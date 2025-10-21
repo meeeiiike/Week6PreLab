@@ -5,6 +5,7 @@ public class DuplicateException extends RuntimeException {
     private String field;
 
     public DuplicateException(String field, String message) {
+        super(message);
         this.field = field;
     }
     public DuplicateException(String message) {
