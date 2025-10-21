@@ -9,11 +9,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @NoArgsConstructor@AllArgsConstructor@Data@Builder
 public class Passenger {
-    @NotBlank @Size(max=40)
+    @NotBlank(message = "id required") @Size(max=40)
     private String passengerID;
-    @NotBlank @Size(max=60)
+    @NotBlank(message = "name is required") @Size(max=60)
     private String name;
     @NotBlank(message = "email is required") @Email(message = "must be valid email")
     private String email;
