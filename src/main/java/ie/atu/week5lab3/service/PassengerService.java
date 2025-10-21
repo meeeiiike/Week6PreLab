@@ -1,5 +1,6 @@
 package ie.atu.week5lab3.service;
 
+import ie.atu.week5lab3.controller.errorHandling.DuplicateException;
 import ie.atu.week5lab3.model.Passenger;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class PassengerService {
     // Uses findByID method to ensure no duped ID's are entered
     public Passenger create(Passenger p){
         if(findByID(p.getPassengerID()).isPresent()){
-            throw new IllegalArgumentException("Passenger already exists");
+            throw new DuplicateException("Passenger with ID: " + p.getPassengerID() + " already exists");
         }
         store.add(p);
         return p;
