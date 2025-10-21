@@ -1,5 +1,6 @@
 package ie.atu.week5lab3.service;
 
+import ie.atu.week5lab3.controller.errorHandling.DuplicateException;
 import ie.atu.week5lab3.model.Passenger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class PassengerServiceTest {
                 .email("Mark@gmail.com")
                 .build());
 
-        assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(DuplicateException.class, () ->
             service.create(Passenger.builder()
                     .passengerID("P002")
                     .name("Mark")
