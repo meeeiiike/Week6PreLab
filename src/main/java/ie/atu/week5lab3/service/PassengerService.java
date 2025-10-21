@@ -1,9 +1,11 @@
 package ie.atu.week5lab3.service;
 
 import ie.atu.week5lab3.controller.errorHandling.DuplicateException;
+import ie.atu.week5lab3.controller.errorHandling.NotFoundException;
 import ie.atu.week5lab3.model.Passenger;
 import org.springframework.stereotype.Service;
 
+import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +43,7 @@ public class PassengerService {
     public Passenger update(Passenger p){
         Optional<Passenger> passengerFound = findByID(p.getPassengerID());
         if(passengerFound.isEmpty()){
-            throw new IllegalArgumentException("Passenger doesn't exist");
+            throw new NotFoundException("Passenger " + p.getPassengerID() + " doesn't exist");
         }
         Passenger updated = passengerFound.get();
         updated.setName(p.getName());
@@ -54,6 +56,6 @@ public class PassengerService {
             store.remove(p);
             return p;
         }
-        throw new IllegalArgumentException("Passenger doesn't exist");
+        throw new NotFoundException("Passenger doesn't exist");
     }
 }

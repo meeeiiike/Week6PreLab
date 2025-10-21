@@ -36,5 +36,12 @@ public class GlobalExceptionHandling {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionDetails);
 
     }
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ExceptionDetails> showIllegalArg(NotFoundException nfe){
+        ExceptionDetails exceptionDetails = new ExceptionDetails();
+        exceptionDetails.setFieldName("passengerID");
+        exceptionDetails.setFieldValue(nfe.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionDetails);
+    }
 
 }
